@@ -16,6 +16,9 @@ migrateup_ci:
 migratedown:
 	migrate -path db/migration -database "postgresql://postgres:postgres@localhost:5433/bank?sslmode=disable" -verbose down
 
+migratedown1:
+	migrate -path db/migration -database "postgresql://postgres:postgres@localhost:5433/bank?sslmode=disable" -verbose down 1
+
 sqlc:
 	sqlc generate
 
@@ -28,4 +31,4 @@ server:
 mock:
 	mockgen -package mockdb -destination db/mock/store.go github.com/tonystrawberry/playground.go.bank/db/sqlc Store
 
-.PHONY: postgres createdb dropbd migrateup migratedown sqlc test server
+.PHONY: postgres createdb dropbd migrateup migratedown sqlc test server migratedown1
